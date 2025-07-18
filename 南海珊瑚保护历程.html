@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>南海珊瑚保护历程时间轴</title>
+  <style>
+    /* 基础样式重置 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f8f9fa;
+      padding: 20px;
+    }
+
+    /* 页面标题样式 */
+    .page-title {
+      text-align: center;
+      margin: 40px 0;
+      color: #0056b3;
+    }
+
+    /* 主容器样式 */
+    .main-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    /* 时间轴区域样式 */
+    .timeline-area {
+      flex: 1;
+      min-width: 300px;
+    }
+
+    /* 详情区域样式 */
+    .detail-area {
+      flex: 1;
+      min-width: 300px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      position: sticky;
+      top: 20px;
+      height: fit-content;
+    }
+
+    /* 时间轴分隔标签样式 */
+    .timeline-era {
+      margin: 30px 0;
+    }
+
+    .timeline-era h2 {
+      background-color: #007bff;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 5px;
+      font-size: 18px;
+      display: inline-block;
+    }
+
+    /* 事件链接列表样式 */
+    .timeline-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 15px;
+    }
+
+    /* 单个事件链接样式 */
+    .timeline-link {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      padding: 15px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-left: 4px solid #007bff;
+    }
+
+    .timeline-link:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .timeline-link.active {
+      background-color: #f0f7ff;
+      border-color: #0056b3;
+    }
+
+    /* 事件日期样式 */
+    .timeline-link .date {
+      font-weight: bold;
+      color: #555;
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+
+    /* 事件标题样式 */
+    .timeline-link h3 {
+      color: #007bff;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    /* 事件简介样式 */
+    .timeline-link p {
+      color: #666;
+      font-size: 15px;
+    }
+
+    /* 详情区域标题样式 */
+    .detail-area h2 {
+      color: #0056b3;
+      margin-bottom: 15px;
+    }
+
+    .detail-area .date {
+      font-weight: bold;
+      color: #555;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .detail-area .description {
+      margin-bottom: 20px;
+    }
+
+    .detail-area .extra-info {
+      padding-top: 15px;
+      border-top: 1px solid #eee;
+      color: #666;
+    }
+
+    /* 移动端适配 */
+    @media screen and (max-width: 768px) {
+      .detail-area {
+        position: static;
+        margin-top: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1 class="page-title">南海珊瑚保护历程时间轴</h1>
+  
+  <div class="main-container">
+    <div class="timeline-area">
+      <!-- 1980年代 -->
+      <div class="timeline-era">
+        <h2>1980年代：保护意识萌芽与初步立法</h2>
+      </div>
+      
+      <div class="timeline-links">
+        <div class="timeline-link" data-id="era1-event1">
+          <span class="date">1980年代初</span>
+          <h3>自然保护区设立</h3>
+          <p>中国开始在广东西南中沙群岛、大亚湾等海域划建海洋自然保护区，将珊瑚礁列为保护对象。</p>
+        </div>
+        
+        <div class="timeline-link" data-id="era1-event2">
+          <span class="date">1980年代末至1990年代</span>
+          <h3>地方性法规起步</h3>
+          <p>海南、广东等地陆续建立以珊瑚礁为主要保护对象的自然保护区，如三亚珊瑚礁自然保护区。</p>
+        </div>
+      </div>
+      
+      <!-- 1990-2000年代 -->
+      <div class="timeline-era">
+        <h2>1990-2000年代：生态危机显现与保护框架形成</h2>
+      </div>
+      
+      <div class="timeline-links">
+        <div class="timeline-link" data-id="era2-event1">
+          <span class="date">1999年</span>
+          <h3>伏季休渔政策实施</h3>
+          <p>中国在南海实施伏季休渔制度，限制捕捞活动，间接保护珊瑚礁生态系统。</p>
+        </div>
+        
+        <div class="timeline-link" data-id="era2-event2">
+          <span class="date">2004年</span>
+          <h3>国际接轨监测</h3>
+          <p>中国采用国际标准开展珊瑚礁生态监测，科学评估退化状况。</p>
+        </div>
+      </div>
+      
+      <!-- 2010年代 -->
+      <div class="timeline-era">
+        <h2>2010年代：人工修复技术突破与保护升级</h2>
+      </div>
+      
+      <div class="timeline-links">
+        <div class="timeline-link" data-id="era3-event1">
+          <span class="date">2010年后</span>
+          <h3>人工繁殖实验成功</h3>
+          <p>中科院南海海洋研究所黄晖团队成功实现珊瑚无性繁殖，通过断枝培育和海底移植技术修复珊瑚礁。</p>
+        </div>
+        
+        <div class="timeline-link" data-id="era3-event2">
+          <span class="date">2022年</span>
+          <h3>生态修复标准出台</h3>
+          <p>《海洋生态修复技术指南》发布，首次将珊瑚礁修复技术标准化。</p>
+        </div>
+        
+        <div class="timeline-link" data-id="era3-event3">
+          <span class="date">2022年前</span>
+          <h3>保护区网络扩展</h3>
+          <p>全国设立11个以珊瑚礁为核心的海洋保护区，如万宁、涠洲岛等，推行"轮休制"管理旅游活动。</p>
+        </div>
+      </div>
+      
+      <!-- 2020-2025年 -->
+      <div class="timeline-era">
+        <h2>2020-2025年：系统性保护与国际合作深化</h2>
+      </div>
+      
+      <div class="timeline-links">
+        <div class="timeline-link" data-id="era4-event1">
+          <span class="date">2024年</span>
+          <h3>最新调查成果发布</h3>
+          <p>《仙宾礁珊瑚礁生态系统调查报告》显示，部分区域珊瑚覆盖率恢复至24.7%，最高达51.3%。</p>
+        </div>
+        
+        <div class="timeline-link" data-id="era4-event2">
+          <span class="date">2024年</span>
+          <h3>政策强化</h3>
+          <p>自然资源部发布《关于加强珊瑚礁保护修复的通知》，推动修复工程与动态监测。</p>
+        </div>
+        
+        <div class="timeline-link" data-id="era4-event3">
+          <span class="date">2024年</span>
+          <h3>绿色岛礁建设</h3>
+          <p>南海岛礁工程采用生态保护措施，如动态监测和珊瑚移植，减少建设对礁盘的破坏。</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="detail-area" id="detail-area">
+      <h2>请选择一个事件</h2>
+      <p>点击左侧的时间轴事件，查看详细信息。</p>
+    </div>
+  </div>
+
+  <script>
+    // 事件数据
+    const eventData = {
+      'era1-event1': {
+        title: '自然保护区设立',
+        date: '1980年代初',
+        description: '中国开始在广东西南中沙群岛、大亚湾等海域划建海洋自然保护区，将珊瑚礁列为保护对象，这是最早的珊瑚礁保护实践。',
+        extraInfo: '这些保护区的设立标志着中国对南海珊瑚礁生态系统的初步重视，为后续的保护工作奠定了基础。'
+      },
+      'era1-event2': {
+        title: '地方性法规起步',
+        date: '1980年代末至1990年代',
+        description: '海南、广东等地陆续建立以珊瑚礁为主要保护对象的自然保护区，如三亚珊瑚礁自然保护区。',
+        extraInfo: '这些地方性法规的出台，为珊瑚礁保护提供了法律依据，规范了相关海域的开发活动。'
+      },
+      'era2-event1': {
+        title: '伏季休渔政策实施',
+        date: '1999年',
+        description: '中国在南海实施伏季休渔制度，限制捕捞活动，间接保护珊瑚礁生态系统。',
+        extraInfo: '数据显示，南海珊瑚覆盖率从1980年代的约60%降至2000年代初的20%左右，主因是过度捕捞、长棘海星爆发及近岸污染。伏季休渔政策的实施对珊瑚礁生态恢复起到了积极作用。'
+      },
+      'era2-event2': {
+        title: '国际接轨监测',
+        date: '2004年',
+        description: '中国采用国际标准开展珊瑚礁生态监测，科学评估退化状况。',
+        extraInfo: '通过与国际标准接轨的监测体系，中国能够更准确地掌握南海珊瑚礁的健康状况，为保护决策提供科学依据。'
+      },
+      'era3-event1': {
+        title: '人工繁殖实验成功',
+        date: '2010年后',
+        description: '中科院南海海洋研究所黄晖团队成功实现珊瑚无性繁殖，通过断枝培育和海底移植技术修复珊瑚礁。',
+        extraInfo: '至2017年已修复约10万平方米珊瑚礁，成活率达75%，为珊瑚礁生态恢复提供了关键技术支持。这一技术突破为全球珊瑚礁保护提供了中国方案。'
+      },
+      'era3-event2': {
+        title: '生态修复标准出台',
+        date: '2022年',
+        description: '《海洋生态修复技术指南》发布，首次将珊瑚礁修复技术标准化。',
+        extraInfo: '该指南的发布，规范了珊瑚礁修复工程的设计、施工和验收，提高了修复工作的科学性和有效性。'
+      },
+      'era3-event3': {
+        title: '保护区网络扩展',
+        date: '2022年前',
+        description: '全国设立11个以珊瑚礁为核心的海洋保护区，如万宁、涠洲岛等，推行"轮休制"管理旅游活动。',
+        extraInfo: '这些保护区形成了较为完善的珊瑚礁保护网络，通过轮休制等创新管理模式，平衡了保护与旅游开发的关系。'
+      },
+      'era4-event1': {
+        title: '最新调查成果发布',
+        date: '2024年',
+        description: '《仙宾礁珊瑚礁生态系统调查报告》显示，部分区域珊瑚覆盖率恢复至24.7%，最高达51.3%。',
+        extraInfo: '这一数据表明，多年来的保护工作取得了显著成效，南海珊瑚礁生态系统呈现出良好的恢复态势，生物多样性也得到了显著提升。'
+      },
+      'era4-event2': {
+        title: '政策强化',
+        date: '2024年',
+        description: '自然资源部发布《关于加强珊瑚礁保护修复的通知》，推动修复工程与动态监测。',
+        extraInfo: '该通知进一步明确了各部门职责，加大了对珊瑚礁保护修复的支持力度，建立了长效监测机制，确保保护工作持续有效推进。'
+      },
+      'era4-event3': {
+        title: '绿色岛礁建设',
+        date: '2024年',
+        description: '南海岛礁工程采用生态保护措施，如动态监测和珊瑚移植，减少建设对礁盘的破坏。',
+        extraInfo: '在岛礁建设过程中，通过科学规划和生态保护措施，最大限度地减少了工程建设对珊瑚礁的影响，实现了海洋开发与生态保护的协调发展。'
+      }
+    };
+
+    // 获取所有时间轴链接
+    const timelineLinks = document.querySelectorAll('.timeline-link');
+    const detailArea = document.getElementById('detail-area');
+
+    // 为每个链接添加点击事件
+    timelineLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        // 移除所有链接的活跃状态
+        timelineLinks.forEach(l => l.classList.remove('active'));
+        
+        // 添加当前链接的活跃状态
+        link.classList.add('active');
+        
+        // 获取事件ID
+        const eventId = link.getAttribute('data-id');
+        
+        // 获取事件数据
+        const event = eventData[eventId];
+        
+        // 更新详情区域
+        if (event) {
+          detailArea.innerHTML = `
+            <h2>${event.title}</h2>
+            <span class="date">${event.date}</span>
+            <div class="description">${event.description}</div>
+            ${event.extraInfo ? `<div class="extra-info">${event.extraInfo}</div>` : ''}
+          `;
+          
+          // 平滑滚动到详情区域（移动端）
+          if (window.innerWidth < 768) {
+            detailArea.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      });
+    });
+
+    // 为时间轴项目添加动画效果
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    // 初始化所有时间轴项目的样式
+    document.querySelectorAll('.timeline-link').forEach(item => {
+      item.style.opacity = 0;
+      item.style.transform = 'translateY(20px)';
+      item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      observer.observe(item);
+    });
+  </script>
+</body>
+
+</html>
