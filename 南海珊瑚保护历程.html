@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>南海珊瑚保护历程 | 横向时间轴</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f0f7ff;
+      padding: 20px;
+      overflow-x: auto; /* 横向滚动支持 */
+    }
+
+    .page-title {
+      text-align: center;
+      margin: 30px 0;
+      color: #0056b3;
+      white-space: nowrap;
+    }
+
+    /* 横向时间轴容器 */
+    .timeline-container {
+      position: relative;
+      min-width: 1200px; /* 确保小屏幕可滚动 */
+      padding: 50px 0;
+      margin: 0 auto;
+    }
+
+    /* 横向时间轴线 */
+    .timeline-line {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background-color: #007bff;
+      transform: translateY(-50%);
+      z-index: 1;
+    }
+
+    /* 时代标签 */
+    .era-label {
+      position: absolute;
+      top: 20px;
+      transform: translateX(-50%);
+      background-color: #0056b3;
+      color: white;
+      padding: 5px 15px;
+      border-radius: 20px;
+      font-size: 14px;
+      z-index: 3;
+    }
+
+    /* 事件容器 */
+    .timeline-events {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* 单个事件样式 */
+    .timeline-event {
+      width: 180px;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.3s ease;
+    }
+
+    .timeline-event:hover {
+      transform: translateY(-5px);
+    }
+
+    /* 事件圆点 */
+    .event-dot {
+      width: 20px;
+      height: 20px;
+      background-color: white;
+      border: 4px solid #007bff;
+      border-radius: 50%;
+      margin: 0 auto;
+      position: relative;
+      z-index: 3;
+    }
+
+    /* 事件连接线 */
+    .event-line {
+      width: 2px;
+      height: 30px;
+      background-color: #007bff;
+      margin: 0 auto;
+    }
+
+    /* 事件卡片 */
+    .event-card {
+      background-color: white;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+      margin-top: 10px;
+      text-align: center;
+    }
+
+    .event-card .date {
+      font-weight: bold;
+      color: #007bff;
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    .event-card h3 {
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .event-card p {
+      font-size: 13px;
+      color: #666;
+      display: none; /* 默认隐藏简介 */
+    }
+
+    .event-card.active p {
+      display: block;
+    }
+
+    /* 详情面板 */
+    .detail-panel {
+      max-width: 800px;
+      margin: 50px auto 30px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      min-height: 150px;
+    }
+
+    .detail-panel h2 {
+      color: #0056b3;
+      margin-bottom: 10px;
+    }
+
+    .detail-panel .date {
+      color: #666;
+      font-style: italic;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    .detail-panel .extra-info {
+      margin-top: 15px;
+      padding-top: 15px;
+      border-top: 1px dashed #eee;
+      color: #555;
+    }
+
+    /* 响应式调整 */
+    @media (max-width: 768px) {
+      .timeline-event {
+        width: 140px;
+      }
+      
+      .event-card h3 {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1 class="page-title">南海珊瑚保护历程横向时间轴</h1>
+
+  <div class="timeline-container">
+    <!-- 时代标签 -->
+    <div class="era-label" style="left: 15%;">1980年代</div>
+    <div class="era-label" style="left: 35%;">1990-2000年代</div>
+    <div class="era-label" style="left: 60%;">2010年代</div>
+    <div class="era-label" style="left: 85%;">2020-2025年</div>
+    
+    <!-- 时间轴线 -->
+    <div class="timeline-line"></div>
+    
+    <!-- 事件容器 -->
+    <div class="timeline-events">
+      <!-- 1980年代事件 -->
+      <div class="timeline-event" data-id="era1-event1">
+        <div class="event-dot"></div>
+        <div class="event-line"></div>
+        <div class="event-card">
+          <span class="date">1980年代初</span>
+          <h3>自然保护区设立</h3>
+          <p>最早的珊瑚礁保护实践</p>
+        </div>
+      </div>
+      
+      <div class="timeline-event" data-id="era1-event2">
+        <div class="event-dot"></div>
+        <div class="event-line"></div>
+        <div class="event-card">
+          <span class="date">1980年代末</span>
+          <h3>地方性法规起步</h3>
+          <p>三亚珊瑚礁自然保护区建立</p>
+        </div>
+      </div>
+      
+      <!-- 1990-2000年代事件 -->
+      <div class="timeline-event" data-id="era2-event1">
+        <div class="event-dot"></div>
+        <div class="event-line"></div>
+        <div class="event-card">
+          <span class="date">1999年</span>
+          <h3>伏季休渔政策</h3>
+          <p>间接保护珊瑚礁生态</p>
+        </div>
+      </div>
+      
+      <div class="timeline-event" data-id="era2-event2">
+        <div class="event-dot"></div>
+        <div class="event-line"></div>
+        <div class="event-card">
+          <span class="date">2004年</span>
+          <h3>国际接轨监测</h3>
+          <p>科学评估退化状况</p>
+        </div>
+      </div>
+      
+      <!-- 2010年代事件 -->
+      <div class="timeline-event" data-id="era3-event1">
+        <div class="event-dot"></div>
+        <div class="event-line"></div>
+        <div class="event-card">
+          <span class="date">2010年后</span>
+          <h3>人工繁殖成功</h3>
+          <p>黄晖团队技术突破</p>
+        </div>
+      </div>
+      
+      <div class="timeline-event" data-id="era3-event2">
+        <div class="event-dot"></div>
+        <div class="event-line"></div>
+        <div class="event-card">
+          <span class="date">2022年</span>
+          <h3>修复标准出台</h3>
+          <p>珊瑚礁修复技术标准化</p>
+        </div>
+      </div>
+      
+      <!-- 2020-2025年事件 -->
+      <div class="timeline-event" data-id="era4-event1">
+        <div class="event-dot"></div>
+        <div class="event-line"></div>
+        <div class="event-card">
+          <span class="date">2024年</span>
+          <h3>调查成果发布</h3>
+          <p>珊瑚覆盖率显著恢复</p>
+        </div>
+      </div>
+      
+      <div class="timeline-event" data-id="era4-event2">
+        <div class="event-dot"></div>
+        <div class="event-line"></div>
+        <div class="event-card">
+          <span class="date">2024年</span>
+          <h3>政策强化</h3>
+          <p>加强珊瑚礁保护修复</p>
+        </div>
+      </div>
+      
+      <div class="timeline-event" data-id="era4-event3">
+        <div class="event-dot"></div>
+        <div class="event-line"></div>
+        <div class="event-card">
+          <span class="date">2024年</span>
+          <h3>绿色岛礁建设</h3>
+          <p>减少建设对礁盘破坏</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 详情面板 -->
+  <div class="detail-panel" id="detail-panel">
+    <h2>请选择一个事件</h2>
+    <p>点击时间轴上的事件节点，查看详细信息。</p>
+  </div>
+
+  <script>
+    // 事件数据
+    const eventData = {
+      'era1-event1': {
+        title: '自然保护区设立',
+        date: '1980年代初',
+        description: '中国开始在广东西南中沙群岛、大亚湾等海域划建海洋自然保护区，将珊瑚礁列为保护对象，这是最早的珊瑚礁保护实践。',
+        extraInfo: '这些保护区的设立标志着中国对南海珊瑚礁生态系统的初步重视，为后续的保护工作奠定了基础。'
+      },
+      'era1-event2': {
+        title: '地方性法规起步',
+        date: '1980年代末至1990年代',
+        description: '海南、广东等地陆续建立以珊瑚礁为主要保护对象的自然保护区，如三亚珊瑚礁自然保护区。',
+        extraInfo: '这些地方性法规的出台，为珊瑚礁保护提供了法律依据，规范了相关海域的开发活动。'
+      },
+      'era2-event1': {
+        title: '伏季休渔政策实施',
+        date: '1999年',
+        description: '中国在南海实施伏季休渔制度，限制捕捞活动，间接保护珊瑚礁生态系统。',
+        extraInfo: '数据显示，南海珊瑚覆盖率从1980年代的约60%降至2000年代初的20%左右，主因是过度捕捞、长棘海星爆发及近岸污染。伏季休渔政策的实施对珊瑚礁生态恢复起到了积极作用。'
+      },
+      'era2-event2': {
+        title: '国际接轨监测',
+        date: '2004年',
+        description: '中国采用国际标准开展珊瑚礁生态监测，科学评估退化状况。',
+        extraInfo: '通过与国际标准接轨的监测体系，中国能够更准确地掌握南海珊瑚礁的健康状况，为保护决策提供科学依据。'
+      },
+      'era3-event1': {
+        title: '人工繁殖实验成功',
+        date: '2010年后',
+        description: '中科院南海海洋研究所黄晖团队成功实现珊瑚无性繁殖，通过断枝培育和海底移植技术修复珊瑚礁。',
+        extraInfo: '至2017年已修复约10万平方米珊瑚礁，成活率达75%，为珊瑚礁生态恢复提供了关键技术支持。这一技术突破为全球珊瑚礁保护提供了中国方案。'
+      },
+      'era3-event2': {
+        title: '生态修复标准出台',
+        date: '2022年',
+        description: '《海洋生态修复技术指南》发布，首次将珊瑚礁修复技术标准化。',
+        extraInfo: '该指南的发布，规范了珊瑚礁修复工程的设计、施工和验收，提高了修复工作的科学性和有效性。'
+      },
+      'era4-event1': {
+        title: '最新调查成果发布',
+        date: '2024年',
+        description: '《仙宾礁珊瑚礁生态系统调查报告》显示，部分区域珊瑚覆盖率恢复至24.7%，最高达51.3%。',
+        extraInfo: '这一数据表明，多年来的保护工作取得了显著成效，南海珊瑚礁生态系统呈现出良好的恢复态势，生物多样性也得到了显著提升。'
+      },
+      'era4-event2': {
+        title: '政策强化',
+        date: '2024年',
+        description: '自然资源部发布《关于加强珊瑚礁保护修复的通知》，推动修复工程与动态监测。',
+        extraInfo: '该通知进一步明确了各部门职责，加大了对珊瑚礁保护修复的支持力度，建立了长效监测机制，确保保护工作持续有效推进。'
+      },
+      'era4-event3': {
+        title: '绿色岛礁建设',
+        date: '2024年',
+        description: '南海岛礁工程采用生态保护措施，如动态监测和珊瑚移植，减少建设对礁盘的破坏。',
+        extraInfo: '在岛礁建设过程中，通过科学规划和生态保护措施，最大限度地减少了工程建设对珊瑚礁的影响，实现了海洋开发与生态保护的协调发展。'
+      }
+    };
+
+    // 获取元素
+    const timelineEvents = document.querySelectorAll('.timeline-event');
+    const detailPanel = document.getElementById('detail-panel');
+    const eventCards = document.querySelectorAll('.event-card');
+
+    // 为每个事件添加点击事件
+    timelineEvents.forEach(event => {
+      event.addEventListener('click', () => {
+        // 移除所有卡片的活跃状态
+        eventCards.forEach(card => card.classList.remove('active'));
+        
+        // 添加当前卡片的活跃状态
+        event.querySelector('.event-card').classList.add('active');
+        
+        // 获取事件ID
+        const eventId = event.getAttribute('data-id');
+        
+        // 更新详情面板
+        const event = eventData[eventId];
+        if (event) {
+          detailPanel.innerHTML = `
+            <h2>${event.title}</h2>
+            <span class="date">${event.date}</span>
+            <div class="description">${event.description}</div>
+            <div class="extra-info">${event.extraInfo}</div>
+          `;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
